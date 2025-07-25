@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anja Jaenicke - Renaissance Mentor | Polymathy MI Academy</title>
+    <meta name="description" content="Meet Anja Jaenicke, renowned polymath and artist who embodies 'Thinker cum Arte' philosophy. Filmmaker, author, visual artist, and former ballet dancer guiding the next generation of Renaissance minds.">
+    <meta name="keywords" content="Anja Jaenicke, polymath mentor, Thinker cum Arte, Renaissance education, multiple intelligences, artistic philosophy">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5e35b1 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Skip to main content for screen readers */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #1a237e;
+            color: #ffd700;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Animated Background Elements */
+        .renaissance-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+            color: #ffd700;
+            will-change: transform;
+            pointer-events: none;
+        }
+
+        .floating-element:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 70%; left: 85%; animation-delay: 1s; }
+        .floating-element:nth-child(3) { top: 40%; left: 75%; animation-delay: 2s; }
+        .floating-element:nth-child(4) { top: 85%; left: 15%; animation-delay: 3s; }
+        .floating-element:nth-child(5) { top: 25%; left: 50%; animation-delay: 4s; }
+        .floating-element:nth-child(6) { top: 60%; left: 20%; animation-delay: 5s; }
+        .floating-element:nth-child(7) { top: 50%; left: 90%; animation-delay: 6s; }
+        .floating-element:nth-child(8) { top: 30%; left: 30%; animation-delay: 7s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* Header */
+        header {
+            background: rgba(26, 35, 126, 0.95);
+            backdrop-filter: blur(15px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            border-bottom: 3px solid #ffd700;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-family: 'Georgia', serif;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            border: 2px solid #ffd700;
+            background: rgba(255, 215, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-link:hover,
+        .back-link:focus {
+            background: #ffd700;
+            color: #1a237e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+            outline: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.9) 0%, rgba(94, 53, 177, 0.9) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,400 Q300,300 600,400 T1200,400 L1200,600 L0,600 Z" fill="rgba(255,215,0,0.1)"/></svg>');
+            background-size: cover;
+            background-position: bottom;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(45deg, #ffd700, #ffb300, #ff6f00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Georgia', serif;
+        }
+
+        .hero .subtitle {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #ffd700;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            margin-top: -60px;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1a237e;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            font-family: 'Georgia', serif;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6f00, #ffd700);
+            border-radius: 2px;
+        }
+
+        /* Mentor Profile */
+        .mentor-profile {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            align-items: start;
+        }
+
+        .mentor-image {
+            text-align: center;
+            position: relative;
+        }
+
+        .mentor-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .mentor-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .mentor-image-placeholder {
+            width: 100%;
+            max-width: 400px;
+            height: 500px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .mentor-image-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .mentor-details {
+            color: #2c3e50;
+        }
+
+        .mentor-details h3 {
+            font-size: 2.5rem;
+            color: #1a237e;
+            margin-bottom: 0.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .mentor-philosophy {
+            font-size: 1.4rem;
+            color: #e74c3c;
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .mentor-bio {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .mentor-bio p {
+            margin-bottom: 1.5rem;
+        }
+
+        .mentor-bio strong {
+            color: #1a237e;
+            font-weight: 700;
+        }
+
+        /* Expertise Areas */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .expertise-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid;
+        }
+
+        .expertise-card:nth-child(1) { border-top-color: #e74c3c; }
+        .expertise-card:nth-child(2) { border-top-color: #9b59b6; }
+        .expertise-card:nth-child(3) { border-top-color: #3498db; }
+        .expertise-card:nth-child(4) { border-top-color: #f39c12; }
+        .expertise-card:nth-child(5) { border-top-color: #1abc9c; }
+
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .expertise-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .expertise-card h4 {
+            font-size: 1.5rem;
+            color: #1a237e;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .expertise-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Philosophy Section */
+        .philosophy-section {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,200 Q600,100 1200,200 L1200,600 L0,600 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+
+        .philosophy-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .philosophy-quote {
+            font-size: 2.5rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #ffd700;
+            font-family: 'Georgia', serif;
+        }
+
+        .philosophy-explanation {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Impact Section */
+        .impact-section {
+            background: linear-gradient(135deg, #5e35b1 0%, #512da8 100%);
+            color: white;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .impact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .impact-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .impact-card h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #ffd700;
+            font-family: 'Georgia', serif;
+        }
+
+        .impact-card p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 18px 35px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Georgia', serif;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .contact-btn:hover,
+        .contact-btn:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.6);
+            outline: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .mentor-profile {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .philosophy-quote {
+                font-size: 1.8rem;
+            }
+            
+            .section h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .expertise-card,
+            .impact-card {
+                border: 3px solid #000;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .floating-element,
+            .expertise-card,
+            .impact-card {
+                animation: none;
+                transition: none;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .expertise-card:nth-child(1) { animation-delay: 0.1s; }
+        .expertise-card:nth-child(2) { animation-delay: 0.2s; }
+        .expertise-card:nth-child(3) { animation-delay: 0.3s; }
+        .expertise-card:nth-child(4) { animation-delay: 0.4s; }
+        .expertise-card:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Renaissance glow effect */
+        .renaissance-glow {
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #ffd700; }
+            to { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffb300; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <div class="renaissance-bg" aria-hidden="true">
+        <div class="floating-element" aria-hidden="true">🎭</div>
+        <div class="floating-element" aria-hidden="true">🎨</div>
+        <div class="floating-element" aria-hidden="true">🎵</div>
+        <div class="floating-element" aria-hidden="true">📚</div>
+        <div class="floating-element" aria-hidden="true">🎬</div>
+        <div class="floating-element" aria-hidden="true">💃</div>
+        <div class="floating-element" aria-hidden="true">✨</div>
+        <div class="floating-element" aria-hidden="true">🌟</div>
+    </div>
+
+    <header role="banner">
+        <nav class="container" role="navigation" aria-label="Main navigation">
+            <a href="index.html" class="logo" aria-label="Polymathy Academy - Return to homepage">
+                <span aria-hidden="true">🏛️</span>
+                Polymathy (MI) Academy
+            </a>
+            <a href="index.html" class="back-link">← Back to Academy</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Anja Jaenicke</h1>
+                <p class="subtitle renaissance-glow">Renaissance Mentor & Artistic Polymath</p>
+                <p>Where intellectual curiosity meets creative expression in the tradition of da Vinci's boundless exploration</p>
+            </div>
+        </div>
+    </section>
+
+    <main id="main" class="main-content" role="main">
+        <section class="section">
+            <div class="container">
+                <h2>Meet Our Newest Renaissance Guide</h2>
+                
+                <div class="mentor-profile">
+                    <div class="mentor-image">
+                        <!-- Placeholder for Anja's image - replace src with actual image path -->
+                        <div class="mentor-image-placeholder" aria-label="Anja Jaenicke Portrait">
+                            🎭
+                        </div>
+                    </div>
+                    
+                    <div class="mentor-details">
+                        <h3>Anja Jaenicke</h3>
+                        <div class="mentor-philosophy">"Thinker cum Arte"</div>
+                        
+                        <div class="mentor-bio">
+                            <p>Anja Jaenicke embodies everything we celebrate at PolyMath Academy—the <strong>seamless integration of intellectual curiosity with creative expression</strong>. Working under her artistic philosophy "Thinker cum Arte," she bridges visual arts, literature, film, philosophy, and performing arts in ways that illuminate new possibilities for learning and creation.</p>
+                            
+                            <p>As a <strong>filmmaker, author, visual artist, and former ballet dancer</strong>, Anja brings a multifaceted perspective that transcends traditional academic boundaries. Her approach to making people <strong>"happy and thoughtful through art"</strong> aligns perfectly with our mission of fostering both rigorous thinking and creative joy.</p>
+                            
+                            <p>Through her mentorship, students discover how <strong>artistic expression becomes a vehicle for deeper understanding</strong>, while intellectual inquiry enriches creative output. Anja guides learners to see the profound connections between movement and mathematics, visual composition and philosophical thought, storytelling and scientific observation.</p>
+                            
+                            <p>Her work exemplifies the Renaissance ideal that <strong>knowledge and beauty are inseparable</strong>, inspiring students to approach every discipline with both analytical rigor and aesthetic sensitivity. Under her guidance, learners develop the confidence to cross boundaries and create new forms of understanding that honor both mind and heart.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Areas of Expertise</h2>
+                
+                <div class="expertise-grid">
+                    <div class="expertise-card fade-in">
+                        <div class="expertise-icon">🎬</div>
+                        <h4>Cinematic Storytelling</h4>
+                        <p>Combining narrative structure with visual composition to create compelling stories that educate and inspire across multiple intelligence domains.</p>
+                    </div>
+                    
+                    <div class="expertise-card fade-in">
+                        <div class="expertise-icon">🎨</div>
+                        <h4>Visual Arts Integration</h4>
+                        <p>Using artistic expression as a gateway to understanding complex concepts in science, mathematics, and philosophy through hands-on creation.</p>
+                    </div>
+                    
+                    <div class="expertise-card fade-in">
+                        <div class="expertise-icon">💃</div>
+                        <h4>Kinesthetic Learning</h4>
+                        <p>Drawing from ballet and movement arts to help students embody knowledge through physical expression and spatial awareness.</p>
+                    </div>
+                    
+                    <div class="expertise-card fade-in">
+                        <div class="expertise-icon">📖</div>
+                        <h4>Literary Philosophy</h4>
+                        <p>Bridging written expression with existential inquiry, helping students articulate profound questions through creative writing and critical analysis.</p>
+                    </div>
+                    
+                    <div class="expertise-card fade-in">
+                        <div class="expertise-icon">🎭</div>
+                        <h4>Performative Learning</h4>
+                        <p>Using theatrical techniques and role-playing to develop interpersonal intelligence while exploring historical and contemporary perspectives.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="philosophy-section section">
+            <div class="container">
+                <div class="philosophy-content">
+                    <h2 style="color: #ffd700;">Artistic Philosophy</h2>
+                    <div class="philosophy-quote">"Thinker cum Arte"</div>
+                    <div class="philosophy-explanation">
+                        <p>Anja's guiding philosophy, "Thinker cum Arte" (Thinker with Art), represents the fundamental belief that <strong>thinking and creating are not separate activities, but interconnected processes</strong> that enhance and enrich each other. This approach recognizes that the deepest insights emerge when intellectual rigor meets creative expression.</p>
+                        
+                        <p>In her mentorship, students learn that <strong>art is not decoration for ideas, but a way of thinking itself</strong>. Whether through the precise movements of dance, the composition of a painting, or the editing rhythm of a film, artistic practice develops cognitive skills that transfer across all domains of knowledge. Similarly, rigorous thinking provides the foundation for meaningful artistic expression that resonates with both mind and soul.</p>
+                        
+                        <p>This philosophy embodies the Renaissance ideal that <strong>the highest human achievements emerge from the marriage of reason and imagination</strong>, preparing students to become not just knowledgeable individuals, but wise creators who can contribute beauty and meaning to the world.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="impact-section section">
+            <div class="container">
+                <h2>Impact on Polymathic Learning</h2>
+                
+                <div class="impact-grid">
+                    <div class="impact-card">
+                        <h4>🌟 Cross-Domain Synthesis</h4>
+                        <p>Anja's multidisciplinary background helps students see unexpected connections between artistic techniques and scientific principles, fostering the boundary-crossing thinking essential for polymathic development.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4>🎯 Embodied Learning</h4>
+                        <p>Through movement and visual arts, students develop kinesthetic and spatial intelligences while exploring abstract concepts, making learning more engaging and memorable across all domains.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4>💡 Creative Problem-Solving</h4>
+                        <p>Her artistic approach to challenges teaches students to approach problems from multiple angles, developing the creative flexibility needed for innovative solutions in any field.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4>🤝 Emotional Intelligence</h4>
+                        <p>Through collaborative artistic projects and performance, students develop both intrapersonal and interpersonal intelligences essential for working effectively with others.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4>🔍 Philosophical Inquiry</h4>
+                        <p>Her integration of existential themes helps students develop the capacity for deep questioning that characterizes true polymathic thinking and lifelong learning.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4>✨ Joy in Learning</h4>
+                        <p>By making education both "happy and thoughtful," Anja helps students develop a sustainable love of learning that will drive their continued growth throughout life.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact-section section">
+            <div class="container">
+                <h2>Connect with Our Renaissance Community</h2>
+                <div class="contact-info">
+                    <p>We're excited to see how Anja's mentorship will inspire our students to think beyond traditional boundaries and discover unexpected connections between their diverse interests and studies.</p>
+                    <p><strong>Join us in welcoming Anja to the PolyMath family</strong> and discover how her "Thinker cum Arte" approach can transform your own learning journey.</p>
+                    <a href="mailto:mentors@polymathyacademy.com?subject=Welcome Anja Jaenicke&body=Hello! I'm excited about Anja Jaenicke joining as a mentor. I'd like to learn more about her programs and how to get involved." class="contact-btn">Welcome Anja</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: #1a237e; color: white; padding: 3rem 0; text-align: center;" role="contentinfo">
+        <div class="container">
+            <h3 style="color: #ffd700; margin-bottom: 1rem; font-family: 'Georgia', serif;"><span aria-hidden="true">🏛️</span> Polymathy (MI) Academy</h3>
+            <p style="margin-bottom: 2rem; opacity: 0.9;">Where Knowledge Boundaries Dissolve • À la Da Vinci</p>
+            <p style="opacity: 0.7;">© 2025 Polymathy Academy. Empowering Renaissance minds through integrated intelligence education.</p>
+            <div style="margin-top: 2rem;">
+                <a href="index.html" style="color: #ffd700; text-decoration: none; margin: 0 1rem;">← Back to Academy</a>
+                <span style="opacity: 0.5;" aria-hidden="true">|</span>
+                <a href="mailto:contact@polymathyacademy.com?subject=Contact Polymathy Academy&body=Hello! I'd like to get in touch with the Polymathy Academy team." style="color: #ffd700; text-decoration: none; margin: 0 1rem;">Contact</a>
