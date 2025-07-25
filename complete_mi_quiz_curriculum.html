@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete MI Assessment & Curriculum - Polymathy Academy</title>
+    <meta name="description" content="Take our comprehensive Multiple Intelligences assessment and receive your personalized polymathic curriculum plan.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 50%, #5e35b1 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ffd700, #ffb300);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        .test-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        .question-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .question-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border-left: 5px solid;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .question.linguistic { border-left-color: #e74c3c; }
+        .question.logical { border-left-color: #3498db; }
+        .question.musical { border-left-color: #9b59b6; }
+        .question.spatial { border-left-color: #f39c12; }
+        .question.kinesthetic { border-left-color: #1abc9c; }
+        .question.naturalistic { border-left-color: #27ae60; }
+        .question.intrapersonal { border-left-color: #8e44ad; }
+        .question.interpersonal { border-left-color: #e67e22; }
+        .question.existential { border-left-color: #2c3e50; }
+
+        .question-number {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .question-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        .answer-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .answer-btn {
+            padding: 12px 24px;
+            border: 2px solid #bdc3c7;
+            background: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            min-width: 100px;
+        }
+
+        .answer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .answer-btn.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .nav-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-height: 50px;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .nav-btn.primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #ecf0f1;
+            color: #2c3e50;
+        }
+
+        .nav-btn.secondary:hover:not(:disabled) {
+            background: #bdc3c7;
+        }
+
+        .results-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .results-section.active {
+            display: block;
+        }
+
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .results-header h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .results-header p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+
+        /* Profile Overview Styles */
+        .profile-overview {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+        }
+
+        .profile-overview h3 {
+            color: #1a237e;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .strength-level {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+
+        .dominant { background: #27ae60; color: white; }
+        .developing { background: #f39c12; color: white; }
+        .emerging { background: #3498db; color: white; }
+
+        .intelligence-results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .intelligence-result {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 5px solid;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .intelligence-result:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .intelligence-result.strong {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e8 100%);
+            border-width: 8px;
+        }
+
+        .intelligence-result.developing {
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff3cd 100%);
+            border-width: 6px;
+        }
+
+        .intelligence-result.emerging {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e3f2fd 100%);
+            border-width: 4px;
+        }
+
+        .intelligence-result.linguistic { border-left-color: #e74c3c; }
+        .intelligence-result.logical { border-left-color: #3498db; }
+        .intelligence-result.musical { border-left-color: #9b59b6; }
+        .intelligence-result.spatial { border-left-color: #f39c12; }
+        .intelligence-result.kinesthetic { border-left-color: #1abc9c; }
+        .intelligence-result.naturalistic { border-left-color: #27ae60; }
+        .intelligence-result.intrapersonal { border-left-color: #8e44ad; }
+        .intelligence-result.interpersonal { border-left-color: #e67e22; }
+        .intelligence-result.existential { border-left-color: #2c3e50; }
+
+        .intelligence-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .intelligence-score {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .intelligence-description {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .score-bar {
+            width: 100%;
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+
+        .score-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        /* Curriculum Styles */
+        .curriculum-section {
+            background: linear-gradient(135deg, #1a237e 0%, #3949ab 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+        }
+
+        .curriculum-section h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #ffd700;
+        }
+
+        .learning-path {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .path-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .path-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffd700;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .path-card h4 {
+            color: #ffd700;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .activity-list {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .activity-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.95rem;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .activity-list li:before {
+            content: "▶";
+            color: #ffd700;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .timeline-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .timeline-item {
+            padding: 15px;
+            border-left: 4px solid;
+            margin: 15px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .timeline-item.month1 { border-left-color: #3498db; }
+        .timeline-item.month2 { border-left-color: #f39c12; }
+        .timeline-item.month3 { border-left-color: #27ae60; }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #27ae60, #229954);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .btn-accent {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .restart-btn {
+            display: block;
+            margin: 30px auto;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Georgia', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .restart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .test-container {
+                padding: 20px;
+            }
+            
+            .answer-options {
+                flex-direction: column;
+            }
+            
+            .answer-btn {
+                width: 100%;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-btn {
+                width: 100%;
+            }
+
+            .learning-path {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .question-counter {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .intro-section p {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .start-btn {
+            background: linear-gradient(45deg, #27ae60, #229954);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 25px;
+            font-family: 'Georgia', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Polymathy Academy</a>
+        
+        <div class="header">
+            <h1>🧠 Complete MI Assessment & Curriculum</h1>
+            <p>Discover your unique intelligence profile and receive your personalized polymathic learning plan designed by Renaissance mentors.</p>
+        </div>
+
+        <!-- Introduction Section -->
+        <div class="intro-section" id="introSection">
+            <h2>Your Journey to Polymathic Thinking</h2>
+            <p>This comprehensive assessment combines Howard Gardner's Multiple Intelligences theory with our revolutionary curriculum system. You'll not only discover your cognitive strengths but receive a complete, personalized learning plan.</p>
+            <p><strong>The Complete Experience:</strong></p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0; text-align: center;">
+                <div style="padding: 20px; background: #e8f5e8; border-radius: 15px; border-left: 5px solid #27ae60;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">🧠</div>
+                    <h4 style="color: #27ae60; margin-bottom: 10px;">1. Assess</h4>
+                    <p style="font-size: 0.95rem; color: #555;">51 carefully designed questions across 9 intelligence domains</p>
+                </div>
+                <div style="padding: 20px; background: #fff3cd; border-radius: 15px; border-left: 5px solid #f39c12;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">🎯</div>
+                    <h4 style="color: #f39c12; margin-bottom: 10px;">2. Analyze</h4>
+                    <p style="font-size: 0.95rem; color: #555;">AI-powered analysis of your unique intelligence profile</p>
+                </div>
+                <div style="padding: 20px; background: #e3f2fd; border-radius: 15px; border-left: 5px solid #3498db;">
+                    <div style="font-size: 2rem; margin-bottom: 10px;">📚</div>
+                    <h4 style="color: #3498db; margin-bottom: 10px;">3. Personalize</h4>
+                    <p style="font-size: 0.95rem; color: #555;">Custom curriculum with specific activities and timeline</p>
+                </div>
+            </div>
+            <p><strong>Time required:</strong> 10-15 minutes for assessment + immediate results</p>
+            <p><strong>What you'll receive:</strong> Detailed intelligence profile, personalized curriculum plan, polymathic connection strategies, and downloadable learning guide</p>
+            <button class="start-btn" onclick="startTest()">Begin Your Complete Assessment</button>
+        </div>
+
+        <!-- Test Container -->
+        <div class="test-container" id="testContainer" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            
+            <div class="question-counter" id="questionCounter"></div>
+            
+            <div id="questionsContainer"></div>
+            
+            <div class="navigation">
+                <button class="nav-btn secondary" id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
+                <div style="text-align: center;">
+                    <span id="questionProgress">Question 1 of 51</span>
+                </div>
+                <button class="nav-btn primary" id="nextBtn" onclick="nextQuestion()">Next</button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="test-container results-section" id="resultsSection">
+            <div class="results-header">
+                <h2>Your Complete Intelligence & Curriculum Profile</h2>
+                <p>Discover your unique pattern of strengths and your personalized polymathic learning journey</p>
+            </div>
+            
+            <!-- Profile Overview -->
+            <div class="profile-overview" id="profileOverview">
+                <!-- Will be populated dynamically -->
+            </div>
+            
+            <div class="intelligence-results" id="intelligenceResults"></div>
+            
+            <!-- Curriculum Section -->
+            <div class="curriculum-section" id="curriculumSection">
+                <!-- Will be populated dynamically -->
+            </div>
+            
+            <button class="restart-btn" onclick="restartTest()">Take Assessment Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentQuestion = 0;
+        let answers = {};
+        let currentMIResults = {};
+
+        // Questions organized by intelligence type
+        const questions = [
+            // Linguistic Intelligence
+            { text: "I'd rather write directions than draw a map for someone.", type: "linguistic", id: 1 },
+            { text: "It's easy for me to say what I think in an argument or debate.", type: "linguistic", id: 2 },
+            { text: "I enjoy a good lecture, speech or sermon.", type: "linguistic", id: 3 },
+            { text: "I am irritated when I hear an argument or statement that sounds illogical.", type: "linguistic", id: 4 },
+            { text: "I'm good at finding the fine points of word meanings.", type: "linguistic", id: 5 },
+            { text: "I'd like to study the structure and logic of languages.", type: "linguistic", id: 6 },
+            { text: "I enjoy word games like Scrabble, crosswords, or anagrams.", type: "linguistic", id: 7 },
+
+            // Logical-Mathematical Intelligence
+            { text: "I can add or multiply in my head.", type: "logical", id: 8 },
+            { text: "I like to work with calculators and computers.", type: "logical", id: 9 },
+            { text: "I like to work puzzles and play games.", type: "logical", id: 10 },
+            { text: "I often see patterns and relationships between numbers faster and easier than others.", type: "logical", id: 11 },
+            { text: "I like to work with numbers and figures.", type: "logical", id: 12 },
+            { text: "I enjoy categorizing and classifying things.", type: "logical", id: 13 },
+            { text: "I can solve math problems quickly in my head.", type: "logical", id: 14 },
+
+            // Musical Intelligence
+            { text: "I can play (or used to play) a musical instrument.", type: "musical", id: 15 },
+            { text: "I can associate music with my moods.", type: "musical", id: 16 },
+            { text: "Life seems empty without music.", type: "musical", id: 17 },
+            { text: "I often connect a piece of music with some event in my life.", type: "musical", id: 18 },
+            { text: "I like to hum, whistle and sing in the shower or when I'm alone.", type: "musical", id: 19 },
+            { text: "I can tell when a musical note is off-key.", type: "musical", id: 20 },
+            { text: "I have a good sense of rhythm.", type: "musical", id: 21 },
+
+            // Spatial Intelligence
+            { text: "I'd rather draw a map than give someone verbal directions.", type: "spatial", id: 22 },
+            { text: "I always know north from south no matter where I am.", type: "spatial", id: 23 },
+            { text: "I always understand the directions that come with new gadgets or appliances.", type: "spatial", id: 24 },
+            { text: "I enjoy building models (or sculpting).", type: "spatial", id: 25 },
+            { text: "I can look at an object one way and see it sideways or backwards just as easily.", type: "spatial", id: 26 },
+            { text: "Just looking at shapes of buildings and structures is pleasurable to me.", type: "spatial", id: 27 },
+            { text: "I can easily visualize objects from different angles.", type: "spatial", id: 28 },
+
+            // Kinesthetic Intelligence
+            { text: "I pick up new dance steps fast.", type: "kinesthetic", id: 29 },
+            { text: "Learning to ride a bike (or skates) was easy.", type: "kinesthetic", id: 30 },
+            { text: "My sense of balance and coordination is good.", type: "kinesthetic", id: 31 },
+            { text: "I'm good at athletics.", type: "kinesthetic", id: 32 },
+            { text: "I like to work with my hands.", type: "kinesthetic", id: 33 },
+            { text: "I learn best when I can move around and use my hands.", type: "kinesthetic", id: 34 },
+            { text: "I need to touch things to understand them better.", type: "kinesthetic", id: 35 },
+
+            // Naturalistic Intelligence
+            { text: "I enjoy spending time in nature.", type: "naturalistic", id: 36 },
+            { text: "I can easily identify different types of plants, animals, or rocks.", type: "naturalistic", id: 37 },
+            { text: "I notice patterns in nature that others miss.", type: "naturalistic", id: 38 },
+            { text: "I'm sensitive to changes in weather patterns.", type: "naturalistic", id: 39 },
+            { text: "I enjoy gardening or working with plants.", type: "naturalistic", id: 40 },
+
+            // Intrapersonal Intelligence
+            { text: "I'm usually aware of the expression on my face.", type: "intrapersonal", id: 41 },
+            { text: "I stay 'in touch' with my moods. I have no trouble identifying them.", type: "intrapersonal", id: 42 },
+            { text: "I prefer working alone rather than in groups.", type: "intrapersonal", id: 43 },
+            { text: "I have a realistic view of my strengths and weaknesses.", type: "intrapersonal", id: 44 },
+
+            // Interpersonal Intelligence
+            { text: "I'm sensitive to the expressions on other people's faces.", type: "interpersonal", id: 45 },
+            { text: "I am sensitive to the moods of others.", type: "interpersonal", id: 46 },
+            { text: "I have a good sense of what others think of me.", type: "interpersonal", id: 47 },
+            { text: "I enjoy collaborating with others on projects.", type: "interpersonal", id: 48 },
+
+            // Existential Intelligence
+            { text: "I often think about the meaning and purpose of life.", type: "existential", id: 49 },
+            { text: "I enjoy pondering questions about existence and consciousness.", type: "existential", id: 50 },
+            { text: "I'm drawn to philosophical discussions about big questions.", type: "existential", id: 51 }
+        ];
+
+        const intelligenceInfo = {
+            linguistic: {
+                name: "Linguistic Intelligence",
+                description: "The ability to use words effectively, both in writing and speaking. You think in words and have a strong appreciation for the meaning and order of words.",
+                color: "#e74c3c",
+                icon: "📚"
+            },
+            logical: {
+                name: "Logical-Mathematical Intelligence", 
+                description: "The ability to reason logically and solve mathematical problems. You think conceptually in logical and numerical patterns.",
+                color: "#3498db",
+                icon: "🔢"
+            },
+            musical: {
+                name: "Musical Intelligence",
+                description: "The ability to perceive, discriminate, transform and express musical forms. You think in sounds, rhythms and patterns.",
+                color: "#9b59b6",
+                icon: "🎵"
+            },
+            spatial: {
+                name: "Spatial Intelligence",
+                description: "The ability to perceive and recreate the visual world accurately. You think in images and pictures.",
+                color: "#f39c12",
+                icon: "📐"
+            },
+            kinesthetic: {
+                name: "Kinesthetic Intelligence",
+                description: "The ability to use your body skillfully and handle objects adroitly. You learn through movement and hands-on activities.",
+                color: "#1abc9c",
+                icon: "🏃‍♂️"
+            },
+            naturalistic: {
+                name: "Naturalistic Intelligence",
+                description: "The ability to recognize and classify plants, animals, and other objects in nature. You think through nature and natural patterns.",
+                color: "#27ae60",
+                icon: "🌿"
+            },
+            intrapersonal: {
+                name: "Intrapersonal Intelligence",
+                description: "The ability to understand yourself and your emotions, goals, and motivations. You think deeply inside yourself.",
+                color: "#8e44ad",
+                icon: "🧠"
+            },
+            interpersonal: {
+                name: "Interpersonal Intelligence",
+                description: "The ability to understand and work well with other people. You think by bouncing ideas off other people.",
+                color: "#e67e22",
+                icon: "🤝"
+            },
+            existential: {
+                name: "Existential Intelligence",
+                description: "The ability to contemplate phenomena beyond sensory data, such as the infinite and infinitesimal. You think about life's big questions.",
+                color: "#2c3e50",
+                icon: "🤔"
+            }
+        };
+
+        // Test Functions
+        function startTest() {
+            document.getElementById('introSection').style.display = 'none';
+            document.getElementById('testContainer').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const container = document.getElementById('questionsContainer');
+            const question = questions[currentQuestion];
+            
+            container.innerHTML = `
+                <div class="question-section active">
+                    <div class="question ${question.type}">
+                        <div class="question-number">Question ${currentQuestion + 1}</div>
+                        <div class="question-text">${question.text}</div>
+                        <div class="answer-options">
+                            <button class="answer-btn" onclick="selectAnswer(2)" data-value="2">True</button>
+                            <button class="answer-btn" onclick="selectAnswer(1)" data-value="1">Sometimes</button>
+                            <button class="answer-btn" onclick="selectAnswer(0)" data-value="0">False</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Restore previous answer if exists
+            if (answers[question.id] !== undefined) {
+                const selectedBtn = container.querySelector(`[data-value="${answers[question.id]}"]`);
+                if (selectedBtn) {
+                    selectedBtn.classList.add('selected');
+                }
+            }
+
+            updateProgress();
+            updateNavigation();
+        }
+
+        function selectAnswer(value) {
+            const question = questions[currentQuestion];
+            answers[question.id] = value;
+            
+            // Update UI
+            document.querySelectorAll('.answer-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            
+            // Enable next button
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('questionProgress').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+        }
+
+        function updateNavigation() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.disabled = currentQuestion === 0;
+            
+            const currentAnswer = answers[questions[currentQuestion].id];
+            nextBtn.disabled = currentAnswer === undefined;
+            
+            if (currentQuestion === questions.length - 1) {
+                nextBtn.textContent = 'View Complete Results';
+            } else {
+                nextBtn.textContent = 'Next';
+            }
+        }
+
+        function calculateScores() {
+            const scores = {};
+            
+            // Initialize scores
+            Object.keys(intelligenceInfo).forEach(type => {
+                scores[type] = 0;
+            });
+            
+            // Calculate scores
+            questions.forEach(question => {
+                if (answers[question.id] !== undefined) {
+                    scores[question.type] += answers[question.id];
+                }
+            });
+
+            // Store globally and convert to percentages
+            const maxPossibleScores = {};
+            Object.keys(intelligenceInfo).forEach(type => {
+                maxPossibleScores[type] = questions.filter(q => q.type === type).length * 2;
+                currentMIResults[type] = Math.round((scores[type] / maxPossibleScores[type]) * 100);
+            });
+
+            return scores;
+        }
+
+        // Enhanced Results Function
+        function showResults() {
+            document.getElementById('testContainer').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'block';
+            
+            const scores = calculateScores();
+            const maxPossibleScores = {};
+            
+            // Calculate max possible scores for each intelligence
+            Object.keys(intelligenceInfo).forEach(type => {
+                maxPossibleScores[type] = questions.filter(q => q.type === type).length * 2;
+            });
+            
+            const resultsContainer = document.getElementById('intelligenceResults');
+            const profileContainer = document.getElementById('profileOverview');
+            const curriculumContainer = document.getElementById('curriculumSection');
+            
+            let resultsHTML = '';
+            let strongIntelligences = [];
+            let developingIntelligences = [];
+            let emergingIntelligences = [];
+            
+            // Categorize intelligences and build results
+            Object.keys(intelligenceInfo).forEach(type => {
+                const info = intelligenceInfo[type];
+                const score = scores[type];
+                const maxScore = maxPossibleScores[type];
+                const percentage = Math.round((score / maxScore) * 100);
+                
+                // Categorize strengths
+                if (percentage >= 70) {
+                    strongIntelligences.push({name: info.name, type: type, score: percentage, icon: info.icon});
+                } else if (percentage >= 50) {
+                    developingIntelligences.push({name: info.name, type: type, score: percentage, icon: info.icon});
+                } else {
+                    emergingIntelligences.push({name: info.name, type: type, score: percentage, icon: info.icon});
+                }
+                
+                const isStrong = percentage >= 70;
+                const isDeveloping = percentage >= 50 && percentage < 70;
+                
+                resultsHTML += `
+                    <div class="intelligence-result ${type} ${isStrong ? 'strong' : isDeveloping ? 'developing' : 'emerging'}">
+                        <div class="intelligence-name">${info.icon} ${info.name}</div>
+                        <div class="intelligence-score" style="color: ${info.color}">${percentage}%</div>
+                        <div class="score-bar">
+                            <div class="score-fill" style="background: ${info.color}; width: ${percentage}%"></div>
+                        </div>
+                        <div class="intelligence-description">${info.description}</div>
+                        ${isStrong ? '<div style="margin-top: 10px; color: #27ae60; font-weight: 600;">🌟 Dominant Strength</div>' : 
+                          isDeveloping ? '<div style="margin-top: 10px; color: #f39c12; font-weight: 600;">🎯 Developing Area</div>' :
+                          '<div style="margin-top: 10px; color: #3498db; font-weight: 600;">🌱 Growth Opportunity</div>'}
+                    </div>
+                `;
+            });
+            
+            resultsContainer.innerHTML = resultsHTML;
+            
+            // Generate profile overview
+            profileContainer.innerHTML = generateProfileOverview(strongIntelligences, developingIntelligences, emergingIntelligences);
+            
+            // Generate comprehensive curriculum recommendations
+            curriculumContainer.innerHTML = generateCurriculumRecommendations(strongIntelligences, developingIntelligences, emergingIntelligences);
+            
+            // Animate score bars
+            setTimeout(() => {
+                document.querySelectorAll('.score-fill').forEach(fill => {
+                    fill.style.width = fill.style.width;
+                });
+            }, 100);
+        }
+
+        function generateProfileOverview(strong, developing, emerging) {
+            let html = `
+                <h3>Your Unique Intelligence Profile</h3>
+                <p style="margin-bottom: 20px; color: #555;">Based on your responses, here's your personalized cognitive profile</p>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 20px;">
+            `;
+            
+            // Add strength badges
+            strong.forEach(intel => {
+                html += `<span class="strength-level dominant">${intel.icon} ${intel.name.split(' ')[0]} (${intel.score}%)</span>`;
+            });
+            
+            developing.forEach(intel => {
+                html += `<span class="strength-level developing">${intel.icon} ${intel.name.split(' ')[0]} (${intel.score}%)</span>`;
+            });
+            
+            emerging.slice(0, 3).forEach(intel => {
+                html += `<span class="strength-level emerging">${intel.icon} ${intel.name.split(' ')[0]} (${intel.score}%)</span>`;
+            });
+            
+            html += `
+                </div>
+                <div style="background: rgba(26, 35, 126, 0.1); padding: 20px; border-radius: 10px; border-left: 4px solid #1a237e;">
+                    <strong>Your Learning Profile:</strong> ${getLearningSummary(strong, developing, emerging)}
+                </div>
+            `;
+            
+            return html;
+        }
+
+        function getLearningSummary(strong, developing, emerging) {
+            if (strong.length >= 3) {
+                return `Multi-domain leader with ${strong.length} dominant intelligences. You excel at connecting ideas across multiple fields and are naturally polymathic.`;
+            } else if (strong.length === 2) {
+                return `Dual-strength learner with strong ${strong[0].name.split(' ')[0]} and ${strong[1].name.split(' ')[0]} abilities. Perfect foundation for cross-domain innovation.`;
+            } else if (strong.length === 1) {
+                return `Specialist with exceptional ${strong[0].name.split(' ')[0]} intelligence. Your curriculum will use this strength as a bridge to develop other areas.`;
+            } else {
+                return `Balanced explorer with emerging strengths across multiple domains. Your journey focuses on discovering and amplifying your natural talents.`;
+            }
+        }
+
+        function generateCurriculumRecommendations(strong, developing, emerging) {
+            let html = `
+                <h3>🎓 Your Complete Polymathic Curriculum</h3>
+                <p style="text-align: center; font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9;">
+                    A personalized 12-month learning journey designed specifically for your intelligence profile
+                </p>
+                
+                <div class="learning-path">
+                    <!-- Strength-Based Learning -->
+                    <div class="path-card">
+                        <h4>🌟 Strength-Based Core Learning</h4>
+                        <p style="margin-bottom: 15px;">Build confidence using your dominant intelligences as learning anchors</p>
+                        <ul class="activity-list">
+            `;
+            
+            strong.forEach(intel => {
+                const activities = getStrengthActivities(intel.type);
+                html += `<li>${activities}</li>`;
+            });
+            
+            if (strong.length === 0) {
+                html += `<li>Focus on your highest-scoring areas (${developing[0]?.name.split(' ')[0]}) to build confidence and establish learning foundations</li>`;
+            }
+            
+            html += `
+                        </ul>
+                    </div>
+                    
+                    <!-- Bridge Learning -->
+                    <div class="path-card">
+                        <h4>🌉 Polymathic Bridge Learning</h4>
+                        <p style="margin-bottom: 15px;">Connect your strengths to developing areas through da Vinci-style integration</p>
+                        <ul class="activity-list">
+            `;
+            
+            const bridgeActivities = generateBridgeActivities(strong, developing, emerging);
+            bridgeActivities.forEach(activity => {
+                html += `<li>${activity}</li>`;
+            });
+            
+            html += `
+                        </ul>
+                    </div>
+                    
+                    <!-- Growth Edge Development -->
+                    <div class="path-card">
+                        <h4>🚀 Growth Edge Development</h4>
+                        <p style="margin-bottom: 15px;">Gentle expansion into emerging areas using your preferred learning style</p>
+                        <ul class="activity-list">
+            `;
+            
+            const growthActivities = generateGrowthActivities(strong, emerging);
+            growthActivities.forEach(activity => {
+                html += `<li>${activity}</li>`;
+            });
+            
+            html += `
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Polymathic Connections -->
+                <div style="background: rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 25px; margin: 25px 0;">
+                    <h4 style="color: #ffd700; margin-bottom: 20px; text-align: center;">🔗 Your Renaissance Connections</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+            `;
+            
+            const connections = generatePolymathicConnections(strong, developing);
+            connections.forEach(connection => {
+                html += `
+                    <div style="background: rgba(255, 255, 255, 0.1); padding: 15px; border-radius: 10px;">
+                        <h5 style="color: #ffd700; margin-bottom: 8px;">${connection.title}</h5>
+                        <p style="font-size: 0.9rem;">${connection.description}</p>
+                    </div>
+                `;
+            });
+            
+            html += `
+                    </div>
+                </div>
+                
+                <!-- Learning Timeline -->
+                <div class="timeline-section">
+                    <h4 style="color: #ffd700; margin-bottom: 20px; text-align: center;">📅 Your 12-Month Journey</h4>
+                    
+                    <div class="timeline-item month1">
+                        <strong>Months 1-3: Foundation Building</strong><br>
+                        Focus on strength amplification and confidence building. Master advanced concepts in your dominant areas while establishing learning routines.
+                    </div>
+                    
+                    <div class="timeline-item month2">
+                        <strong>Months 4-8: Bridge Construction</strong><br>
+                        Begin connecting your strengths to developing areas through carefully designed cross-domain projects and collaborative learning.
+                    </div>
+                    
+                    <div class="timeline-item month3">
+                        <strong>Months 9-12: Polymathic Integration</strong><br>
+                        Undertake complex projects that synthesize multiple intelligences, mentor others, and contribute to the global learning community.
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.2); border-radius: 10px; border-left: 4px solid #ffd700;">
+                        <strong>🎯 Success Metrics:</strong> Monthly self-assessments, peer feedback sessions, portfolio development, and BrainHQ neuroplasticity tracking
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button onclick="downloadCompletePlan()" class="btn btn-primary">
+                        📥 Download Complete Plan
+                    </button>
+                    <button onclick="requestMentorSession()" class="btn btn-secondary">
+                        🤝 Request Mentor Session
+                    </button>
+                    <button onclick="joinLearningCommunity()" class="btn btn-accent">
+                        🌐 Join Learning Community
+                    </button>
+                </div>
+            `;
+            
+            return html;
+        }
+
+        function getStrengthActivities(intelligenceType) {
+            const activities = {
+                linguistic: "Advanced rhetoric and persuasion training, multilingual storytelling projects, etymology studies, creative writing workshops",
+                logical: "Advanced mathematical modeling, algorithmic thinking exercises, formal logic training, scientific hypothesis development",
+                musical: "Composition and arrangement projects, music theory and analysis, rhythmic pattern exploration, cross-cultural musical studies",
+                spatial: "3D architectural design projects, geometric art creation, navigation and mapping exercises, visual-spatial memory training",
+                kinesthetic: "Precision craft mastery, athletic skill development, hands-on engineering projects, embodied learning techniques",
+                naturalistic: "Advanced ecological research, biological classification systems, environmental pattern analysis, outdoor survival skills",
+                intrapersonal: "Advanced metacognitive practices, emotional intelligence development, goal-setting and achievement systems, mindfulness training",
+                interpersonal: "Leadership development programs, conflict resolution training, empathy and perspective-taking exercises, team dynamics mastery",
+                existential: "Advanced philosophical inquiry, meaning-making frameworks, ethical reasoning development, consciousness exploration"
+            };
+            return activities[intelligenceType] || "Specialized advanced training in your area of strength";
+        }
+
+        function generateBridgeActivities(strong, developing, emerging) {
+            const activities = [];
+            const strongTypes = strong.map(s => s.type);
+            
+            // Generate specific bridge activities based on strength combinations
+            if (strongTypes.includes('linguistic')) {
+                activities.push("Create multimedia presentations combining writing with visual/spatial elements");
+                activities.push("Write scientific papers or nature journals to develop naturalistic intelligence");
+                activities.push("Compose lyrics and poetry to bridge into musical intelligence");
+                activities.push("Practice debate and discussion to enhance interpersonal skills");
+            }
+            
+            if (strongTypes.includes('logical')) {
+                activities.push("Use mathematical modeling to understand musical patterns and compositions");
+                activities.push("Apply statistical analysis to social dynamics and interpersonal relationships");
+                activities.push("Create logical frameworks for philosophical and existential questions");
+                activities.push("Design systematic approaches to kinesthetic skill development");
+            }
+            
+            if (strongTypes.includes('musical')) {
+                activities.push("Explore mathematical relationships in harmony, rhythm, and musical structure");
+                activities.push("Use musical mnemonics and rhythm to enhance linguistic learning");
+                activities.push("Combine movement and dance with musical expression for kinesthetic development");
+                activities.push("Study natural soundscapes and their patterns for naturalistic intelligence");
+            }
+            
+            if (strongTypes.includes('spatial')) {
+                activities.push("Create visual representations and mind maps for complex logical concepts");
+                activities.push("Use architectural and design principles in hands-on kinesthetic projects");
+                activities.push("Develop visual language systems to enhance linguistic intelligence");
+                activities.push("Map social networks and relationships to build interpersonal understanding");
+            }
+            
+            if (strongTypes.includes('kinesthetic')) {
+                activities.push("Build physical models to understand abstract mathematical and scientific concepts");
+                activities.push("Use gesture and movement to enhance linguistic expression and communication");
+                activities.push("Create tactile art and sculpture to develop spatial intelligence");
+                activities.push("Practice mindful movement and body awareness for intrapersonal development");
+            }
+            
+            if (strongTypes.includes('naturalistic')) {
+                activities.push("Study biological systems to understand logical patterns and mathematical sequences");
+                activities.push("Use nature observation to enhance spatial awareness and environmental mapping");
+                activities.push("Practice biomimicry in kinesthetic and hands-on building projects");
+                activities.push("Explore ecological relationships to develop interpersonal and social understanding");
+            }
+            
+            if (strongTypes.includes('intrapersonal')) {
+                activities.push("Use reflective writing and journaling to develop linguistic intelligence");
+                activities.push("Practice self-assessment and goal-setting with logical, systematic approaches");
+                activities.push("Combine meditation and mindfulness with nature observation");
+                activities.push("Use self-awareness to better understand and relate to others interpersonally");
+            }
+            
+            if (strongTypes.includes('interpersonal')) {
+                activities.push("Lead group projects that combine multiple intelligence areas");
+                activities.push("Practice teaching and mentoring to strengthen linguistic expression");
+                activities.push("Facilitate collaborative problem-solving for logical-mathematical development");
+                activities.push("Organize group music-making or artistic projects for creative development");
+            }
+            
+            if (strongTypes.includes('existential')) {
+                activities.push("Write philosophical essays and engage in Socratic dialogue for linguistic development");
+                activities.push("Explore the mathematical and logical foundations of philosophical arguments");
+                activities.push("Use contemplative practices in nature for naturalistic and intrapersonal growth");
+                activities.push("Engage in meaningful discussions and debates to develop interpersonal skills");
+            }
+            
+            // Add general polymathic activities if specific ones aren't enough
+            if (activities.length < 4) {
+                activities.push("Design interdisciplinary projects combining your top 3 intelligence areas");
+                activities.push("Create teaching materials that use your strengths to explain other subjects");
+                activities.push("Join or form study groups that complement your intelligence profile");
+                activities.push("Document your learning journey across different domains through multimedia portfolios");
+            }
+            
+            return activities.slice(0, 4); // Limit to 4 activities
+        }
+
+        function generateGrowthActivities(strong, emerging) {
+            const activities = [];
+            const strongTypes = strong.map(s => s.type);
+            
+            // Generate growth activities that use strengths as scaffolding
+            if (strongTypes.length > 0) {
+                activities.push(`Use your ${strong[0].name.split(' ')[0]} strength as an entry point for exploring emerging areas`);
+                activities.push("Start with 15-20 minute daily practices in your lowest-scoring intelligence areas");
+                activities.push("Find learning partners or mentors who are strong in your developing areas");
+                activities.push("Create projects that combine emerging areas with your established strengths");
+            } else {
+                activities.push("Begin with gentle exploration of your highest-scoring areas to build confidence");
+                activities.push("Use multiple learning modalities to discover your preferred approaches");
+                activities.push("Join beginner-friendly communities in areas you want to develop");
+                activities.push("Set small, achievable goals to build momentum in emerging intelligence areas");
+            }
+            
+            activities.push("Celebrate small wins and track progress weekly in a learning journal");
+            activities.push("Gradually increase time spent in challenging areas as confidence builds");
+            activities.push("Use the Polymathy Academy's BrainHQ neuroplasticity training for cognitive enhancement");
+            activities.push("Participate in the Academy's peer mentoring program for ongoing support");
+            
+            return activities.slice(0, 4);
+        }
+
+        function generatePolymathicConnections(strong, developing) {
+            const connections = [];
+            const allIntelligences = [...strong, ...developing];
+            
+            // Generate specific da Vinci-style connections based on intelligence combinations
+            if (strong.some(s => s.type === 'linguistic') && allIntelligences.some(i => i.type === 'musical')) {
+                connections.push({
+                    title: "📚 + 🎵 Lyrical Mastery",
+                    description: "Explore poetry, song composition, and the rhythmic patterns in great literature"
+                });
+            }
+            
+            if (strong.some(s => s.type === 'logical') && allIntelligences.some(i => i.type === 'spatial')) {
+                connections.push({
+                    title: "🔢 + 📐 Sacred Geometry",
+                    description: "Discover mathematical relationships in art, architecture, and natural forms"
+                });
+            }
+            
+            if (strong.some(s => s.type === 'spatial') && allIntelligences.some(i => i.type === 'kinesthetic')) {
+                connections.push({
+                    title: "📐 + 🏃‍♂️ Embodied Design",
+                    description: "Create physical models and sculptures that express spatial-mathematical concepts"
+                });
+            }
+            
+            if (allIntelligences.some(i => i.type === 'naturalistic') && strong.some(s => s.type === 'logical')) {
+                connections.push({
+                    title: "🌿 + 🔢 Biomathematics",
+                    description: "Study mathematical patterns in nature: fractals, Fibonacci sequences, and growth patterns"
+                });
+            }
+            
+            if (strong.some(s => s.type === 'interpersonal') && allIntelligences.some(i => i.type === 'intrapersonal')) {
+                connections.push({
+                    title: "🤝 + 🧠 Emotional Mastery",
+                    description: "Develop deep self-awareness to enhance your ability to understand and help others"
+                });
+            }
+            
+            if (allIntelligences.some(i => i.type === 'existential')) {
+                connections.push({
+                    title: "🤔 + 🎨 Philosophical Art",
+                    description: "Express deep questions about existence through creative and artistic media"
+                });
+            }
+            
+            // Add general connections if needed
+            if (connections.length < 3) {
+                connections.push({
+                    title: "🌟 Cross-Domain Innovation",
+                    description: "Apply insights from your strongest area to solve problems in developing areas"
+                });
+                connections.push({
+                    title: "🎓 Teaching Integration",
+                    description: "Teach others using your strengths, which deepens understanding across all areas"
+                });
+                connections.push({
+                    title: "🔬 Research Synthesis",
+                    description: "Conduct projects that require multiple intelligence types working together"
+                });
+            }
+            
+            return connections.slice(0, 4);
+        }
+
+        // Action Functions
+        function downloadCompletePlan() {
+            const timestamp = new Date().toLocaleDateString();
+            const strongAreas = Object.entries(currentMIResults)
+                .filter(([key, value]) => value >= 70)
+                .map(([key, value]) => `${key}: ${value}%`)
+                .join(', ') || 'Balanced profile';
+            
+            const content = `
+COMPLETE MI CURRICULUM PLAN
+Polymathy Academy - Renaissance Learning System
+Generated: ${timestamp}
+
+===========================================
+YOUR INTELLIGENCE PROFILE
+===========================================
+
+Overall Profile: ${getProfileSummary()}
+
+Strong Areas (70%+): ${strongAreas}
+
+Developing Areas (50-69%): ${Object.entries(currentMIResults)
+    .filter(([key, value]) => value >= 50 && value < 70)
+    .map(([key, value]) => `${key}: ${value}%`)
+    .join(', ') || 'None identified'}
+
+Growth Opportunities (<50%): ${Object.entries(currentMIResults)
+    .filter(([key, value]) => value < 50)
+    .map(([key, value]) => `${key}: ${value}%`)
+    .join(', ') || 'None identified'}
+
+===========================================
+PERSONALIZED CURRICULUM OVERVIEW
+===========================================
+
+PHASE 1 (Months 1-3): Foundation Building
+- Focus on strength amplification
+- Establish daily learning routines
+- Build confidence through mastery
+
+PHASE 2 (Months 4-8): Bridge Construction
+- Connect strengths to developing areas
+- Cross-domain projects
+- Collaborative learning
+
+PHASE 3 (Months 9-12): Polymathic Integration
+- Complex multi-intelligence projects
+- Mentoring others
+- Community contribution
+
+===========================================
+RECOMMENDED ACTIVITIES
+===========================================
+
+STRENGTH-BASED CORE LEARNING:
+${getDetailedActivities('strength')}
+
+POLYMATHIC BRIDGE ACTIVITIES:
+${getDetailedActivities('bridge')}
+
+GROWTH EDGE DEVELOPMENT:
+${getDetailedActivities('growth')}
+
+===========================================
+NEXT STEPS
+===========================================
+
+1. Begin with daily 30-minute sessions in your strongest area
+2. Schedule weekly bridge activities combining 2+ intelligences
+3. Join the Polymathy Academy learning community
+4. Track progress using BrainHQ neuroplasticity training
+5. Request a personal mentor consultation
+
+Contact Information:
+- Curriculum Support: curriculum@polymathyacademy.com
+- Mentor Sessions: mentors@polymathyacademy.com
+- Community Access: community@polymathyacademy.com
+
+"Where Knowledge Boundaries Dissolve" - À la Da Vinci
+            `;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `polymathy-curriculum-plan-${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function getProfileSummary() {
+            const strongCount = Object.values(currentMIResults).filter(v => v >= 70).length;
+            const avgScore = Math.round(Object.values(currentMIResults).reduce((a, b) => a + b, 0) / Object.keys(currentMIResults).length);
+            
+            if (strongCount >= 3) return `Multi-domain leader (${strongCount} strong areas, ${avgScore}% average)`;
+            if (strongCount === 2) return `Dual-strength specialist (${strongCount} strong areas, ${avgScore}% average)`;
+            if (strongCount === 1) return `Focused specialist (${strongCount} strong area, ${avgScore}% average)`;
+            return `Balanced explorer (developing across multiple areas, ${avgScore}% average)`;
+        }
+
+        function getDetailedActivities(type) {
+            // This would generate detailed activity lists based on the user's profile
+            return `[Detailed ${type} activities would be listed here based on individual profile analysis]`;
+        }
+
+        function requestMentorSession() {
+            const results = Object.entries(currentMIResults)
+                .map(([key, value]) => `${key}: ${value}%`)
+                .join('\n');
+            
+            const emailBody = `Hi! I've completed the comprehensive MI assessment and curriculum planning and would like to request a personalized mentor session.
+
+MY COMPLETE INTELLIGENCE PROFILE:
+${results}
+
+PROFILE SUMMARY: ${getProfileSummary()}
+
+I'm particularly interested in:
+✓ Detailed curriculum customization for my specific profile
+✓ Advanced polymathic connection strategies
+✓ Mentorship for my strongest intelligence areas
+✓ Guidance for developing emerging areas
+✓ Integration with existing studies/career goals
+✓ Access to the Renaissance learning community
+
+PREFERRED SESSION FORMAT:
+□ Video consultation (45 minutes)
+□ Detailed written analysis and recommendations
+□ Group mentoring session with similar profiles
+□ Ongoing mentorship program enrollment
+
+AVAILABILITY:
+[Please let me know your availability for the next 2 weeks]
+
+Thank you for creating such a comprehensive system! I'm excited to begin my polymathic journey.
+
+Best regards!`;
+            
+            const mailtoLink = `mailto:mentors@polymathyacademy.com?subject=Personal Mentor Session Request - MI Profile Assessment&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+        }
+
+        function joinLearningCommunity() {
+            const profileSummary = getProfileSummary();
+            const strongAreas = Object.entries(currentMIResults)
+                .filter(([key, value]) => value >= 70)
+                .map(([key, value]) => key)
+                .join(', ') || 'balanced';
+            
+            const emailBody = `Hello Polymathy Academy Community!
+
+I've just completed the comprehensive MI assessment and I'm excited to join the Renaissance learning community!
+
+MY LEARNING PROFILE:
+${profileSummary}
+
+STRONGEST AREAS: ${strongAreas}
+
+INTELLIGENCE SCORES:
+${Object.entries(currentMIResults).map(([key, value]) => `${key}: ${value}%`).join('\n')}
+
+I'M INTERESTED IN:
+✓ Connecting with fellow polymaths who complement my profile
+✓ Collaborative cross-domain projects
+✓ Study groups and learning partnerships
+✓ Sharing knowledge in my strong areas
+✓ Learning from others in my developing areas
+✓ Contributing to community research and innovation
+
+COLLABORATION INTERESTS:
+□ Academic research projects
+□ Creative and artistic endeavors
+□ Technology and innovation initiatives
+□ Teaching and mentoring programs
+□ Philosophy and existential discussions
+□ Nature and environmental projects
+□ Music and performance collaborations
+□ Social impact and community service
+
+Looking forward to connecting with like-minded Renaissance learners!
+
+Best regards!`;
+            
+            const mailtoLink = `mailto:community@polymathyacademy.com?subject=Join Learning Community - New MI Profile Assessment&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+        }
+
+        function restartTest() {
+            currentQuestion = 0;
+            answers = {};
+            currentMIResults = {};
+            document.getElementById('resultsSection').style.display = 'none';
+            document.getElementById('introSection').style.display = 'block';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up initial state
+            document.getElementById('testContainer').style.display = 'none';
+            document.getElementById('resultsSection').style.display = 'none';
+        });
+
+        // Additional utility functions for enhanced functionality
+        function generatePersonalizedInsights() {
+            const insights = [];
+            const scores = currentMIResults;
+            
+            // Analyze patterns in the results
+            const highestScore = Math.max(...Object.values(scores));
+            const lowestScore = Math.min(...Object.values(scores));
+            const range = highestScore - lowestScore;
+            
+            if (range > 50) {
+                insights.push("You show a highly specialized cognitive profile with distinct strengths and growth areas.");
+            } else if (range < 25) {
+                insights.push("You demonstrate a well-balanced cognitive profile across multiple intelligence domains.");
+            }
+            
+            // Identify learning style preferences
+            const verbalScores = (scores.linguistic || 0) + (scores.interpersonal || 0);
+            const visualScores = (scores.spatial || 0) + (scores.naturalistic || 0);
+            const kinestheticScores = (scores.kinesthetic || 0) + (scores.musical || 0);
+            
+            if (verbalScores > visualScores && verbalScores > kinestheticScores) {
+                insights.push("You learn best through verbal and social interaction.");
+            } else if (visualScores > verbalScores && visualScores > kinestheticScores) {
+                insights.push("You learn best through visual and spatial approaches.");
+            } else if (kinestheticScores > verbalScores && kinestheticScores > visualScores) {
+                insights.push("You learn best through hands-on and experiential methods.");
+            }
+            
+            return insights;
+        }
+
+        function suggestCareerPaths() {
+            const scores = currentMIResults;
+            const strongAreas = Object.entries(scores)
+                .filter(([key, value]) => value >= 70)
+                .map(([key, value]) => key);
+            
+            const careerSuggestions = [];
+            
+            // Generate career suggestions based on strong intelligence combinations
+            if (strongAreas.includes('linguistic') && strongAreas.includes('interpersonal')) {
+                careerSuggestions.push("Education, Journalism, Law, Counseling, Diplomacy");
+            }
+            
+            if (strongAreas.includes('logical') && strongAreas.includes('spatial')) {
+                careerSuggestions.push("Engineering, Architecture, Computer Science, Research Science");
+            }
+            
+            if (strongAreas.includes('musical') && strongAreas.includes('interpersonal')) {
+                careerSuggestions.push("Music Therapy, Performance, Teaching, Arts Administration");
+            }
+            
+            if (strongAreas.includes('naturalistic') && strongAreas.includes('logical')) {
+                careerSuggestions.push("Environmental Science, Biology, Agriculture, Conservation");
+            }
+            
+            if (strongAreas.includes('intrapersonal') && strongAreas.includes('existential')) {
+                careerSuggestions.push("Philosophy, Psychology, Spirituality, Research, Writing");
+            }
+            
+            // Add polymathic career suggestions
+            if (strongAreas.length >= 3) {
+                careerSuggestions.push("Interdisciplinary Research, Innovation Consulting, Renaissance Entrepreneurship");
+            }
+            
+            return careerSuggestions.length > 0 ? careerSuggestions : ["Explore interdisciplinary fields that combine your developing strengths"];
+        }
+
+        // Enhanced analytics for curriculum optimization
+        function analyzeLearningStyePreferences() {
+            const scores = currentMIResults;
+            const preferences = {
+                sequential: (scores.logical || 0) + (scores.linguistic || 0),
+                visual: (scores.spatial || 0) + (scores.naturalistic || 0),
+                auditory: (scores.musical || 0) + (scores.linguistic || 0),
+                kinesthetic: (scores.kinesthetic || 0) + (scores.spatial || 0),
+                social: (scores.interpersonal || 0) + (scores.linguistic || 0),
+                solitary: (scores.intrapersonal || 0) + (scores.existential || 0)
+            };
+            
+            return Object.entries(preferences)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 3)
+                .map(([style, score]) => ({ style, score }));
+        }
+
+        // Progress tracking system
+        function initializeProgressTracking() {
+            const progressData = {
+                assessmentDate: new Date().toISOString(),
+                initialProfile: currentMIResults,
+                milestones: [],
+                learningGoals: [],
+                completedActivities: []
+            };
+            
+            // This would integrate with a backend system in a real implementation
+            console.log('Progress tracking initialized:', progressData);
+        }
+
+        // Integration with BrainHQ-style cognitive training
+        function generateCognitiveTrainingPlan() {
+            const scores = currentMIResults;
+            const trainingAreas = [];
+            
+            // Focus on areas that could benefit from neuroplasticity training
+            Object.entries(scores).forEach(([intelligence, score]) => {
+                if (score < 60) {
+                    trainingAreas.push({
+                        area: intelligence,
+                        currentLevel: score,
+                        targetImprovement: Math.min(score + 20, 85),
+                        trainingFocus: getCognitiveTrainingFocus(intelligence)
+                    });
+                }
+            });
+            
+            return trainingAreas;
+        }
+
+        function getCognitiveTrainingFocus(intelligence) {
+            const trainingMap = {
+                linguistic: "Verbal working memory, reading comprehension, vocabulary expansion",
+                logical: "Processing speed, working memory, pattern recognition",
+                musical: "Auditory processing, rhythm recognition, tonal memory",
+                spatial: "Visual processing, mental rotation, spatial working memory",
+                kinesthetic: "Coordination training, proprioception, motor planning",
+                naturalistic: "Pattern recognition, categorization, environmental awareness",
+                intrapersonal: "Emotional regulation, self-awareness, metacognition",
+                interpersonal: "Social cognition, empathy training, communication skills",
+                existential: "Abstract reasoning, philosophical thinking, meaning-making"
+            };
+            
+            return trainingMap[intelligence] || "General cognitive flexibility training";
+        }
+
+        // Community matching system
+        function findLearningPartners() {
+            // This would connect to a community database in a real system
+            const myProfile = currentMIResults;
+            const suggestions = [];
+            
+            // Find complementary profiles
+            const weakAreas = Object.entries(myProfile)
+                .filter(([key, value]) => value < 60)
+                .map(([key, value]) => key);
+            
+            suggestions.push({
+                type: "Complementary Partners",
+                description: `Connect with learners strong in: ${weakAreas.join(', ')}`,
+                benefit: "Learn from their expertise while sharing your strengths"
+            });
+            
+            // Find similar profiles for peer support
+            const strongAreas = Object.entries(myProfile)
+                .filter(([key, value]) => value >= 70)
+                .map(([key, value]) => key);
+            
+            if (strongAreas.length > 0) {
+                suggestions.push({
+                    type: "Peer Support Group",
+                    description: `Join learners with similar strengths in: ${strongAreas.join(', ')}`,
+                    benefit: "Advance together in areas of mutual strength"
+                });
+            }
+            
+            return suggestions;
+        }
+
+        // Real-time curriculum adaptation
+        function adaptCurriculumBasedOnProgress(progressData) {
+            // This would adjust the curriculum based on learning progress
+            const adaptations = [];
+            
+            // Example adaptation logic
+            if (progressData.strugglingAreas) {
+                adaptations.push("Increase scaffolding and support in challenging areas");
+                adaptations.push("Provide more bridge activities connecting strengths to difficulties");
+            }
+            
+            if (progressData.acceleratedAreas) {
+                adaptations.push("Introduce advanced challenges in areas of rapid progress");
+                adaptations.push("Encourage mentoring others in strong areas");
+            }
+            
+            return adaptations;
+        }
+
+        // Export results for external analysis
+        function exportDetailedResults() {
+            const exportData = {
+                timestamp: new Date().toISOString(),
+                profile: currentMIResults,
+                insights: generatePersonalizedInsights(),
+                careerSuggestions: suggestCareerPaths(),
+                learningPreferences: analyzeLearningStyePreferences(),
+                cognitiveTrainingPlan: generateCognitiveTrainingPlan(),
+                communityMatching: findLearningPartners(),
+                curriculumSummary: getProfileSummary()
+            };
+            
+            return JSON.stringify(exportData, null, 2);
+        }
+
+        // Integration hooks for external systems
+        window.PolymathyAcademy = {
+            getCurrentResults: () => currentMIResults,
+            getDetailedAnalysis: exportDetailedResults,
+            generateCurriculum: () => generateCurriculumRecommendations(...getCategorizedIntelligences()),
+            initializeTracking: initializeProgressTracking,
+            findPartners: findLearningPartners
+        };
+
+        function getCategorizedIntelligences() {
+            const strong = [];
+            const developing = [];
+            const emerging = [];
+            
+            Object.entries(currentMIResults).forEach(([type, score]) => {
+                const info = intelligenceInfo[type];
+                const intel = { name: info.name, type: type, score: score, icon: info.icon };
+                
+                if (score >= 70) strong.push(intel);
+                else if (score >= 50) developing.push(intel);
+                else emerging.push(intel);
+            });
+            
+            return [strong, developing, emerging];
+        }
+    </script>
+</body>
+</html>
